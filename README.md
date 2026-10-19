@@ -1,5 +1,5 @@
 
-# Vamos brincar! 🎈
+# Vamos brincar! 
 
 **Vamos brincar!** é um jogo educativo e interativo criado para crianças da **Educação Infantil, Pré-Escola II**, a partir da proposta do Setor de Educação de Brusque.
 
@@ -27,10 +27,10 @@ A criança não precisa ler nada: o enunciado é falado pelo jogo e pode ser rep
 ## Níveis de dificuldade
 
 | Nível | Perguntas | Conteúdo |
-|---|---|---|
-| 🌱 Fácil | 16 | Contar até 5, som da letra, primeira letra da palavra, em cima, embaixo, dentro, fora, cores, maior e menor, habitat |
-| 🌷 Médio | 12 | Contar até 10, comparar quantidades, sílabas, quantas letras, frente, atrás, entre, lado direito, cores menos usuais, som de animal |
-| 🌸 Difícil | 12 | Somar e subtrair, padrões, rimas, sílaba inicial, palavra escrita, trajetos, setas, altura, formas, sombras, achar o diferente |
+
+ Fácil | 16 | Contar até 5, som da letra, primeira letra da palavra, em cima, embaixo, dentro, fora, cores, maior e menor, habitat |
+ Médio | 12 | Contar até 10, comparar quantidades, sílabas, quantas letras, frente, atrás, entre, lado direito, cores menos usuais, som de animal |
+ Difícil | 12 | Somar e subtrair, padrões, rimas, sílaba inicial, palavra escrita, trajetos, setas, altura, formas, sombras, achar o diferente |
 
 ---
 
