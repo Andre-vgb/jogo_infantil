@@ -1,0 +1,119 @@
+.palco {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.alvo {
+  background: rgba(255, 255, 255, 0.94);
+  border-radius: 22px;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 164px;
+  min-height: 172px;
+  box-shadow: 0 6px 0 rgba(150, 100, 30, 0.26);
+  transition: transform 0.12s, box-shadow 0.12s;
+}
+
+/* Realce quando a peca passa por cima: a crianca ve onde vai soltar. */
+.alvo--perto {
+  transform: scale(1.05);
+  box-shadow: 0 6px 0 var(--menta);
+}
+
+.alvo-recinto {
+  border: 6px dashed #63b7d8;
+  border-radius: 16px;
+  background: #e7f5fb;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.alvo-cenario {
+  font-size: 58px;
+  line-height: 1;
+}
+.alvo-cenario--sombra {
+  filter: brightness(0) opacity(0.4);
+}
+
+.alvo-vaga {
+  width: 82px;
+  height: 82px;
+  border: 4px dashed #d9c08f;
+  border-radius: 18px;
+  background: #fffdf7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+}
+
+.gaveta {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  min-height: 92px;
+}
+
+.peca {
+  font-size: 60px;
+  line-height: 1;
+  cursor: grab;
+  padding: 5px;
+  filter: drop-shadow(0 5px 4px rgba(120, 80, 30, 0.32));
+  transition: transform 0.15s;
+  touch-action: none;
+}
+
+.peca--arrastando {
+  position: fixed;
+  z-index: 60;
+  pointer-events: none;
+  transform: scale(1.15);
+}
+
+.peca--escolhida {
+  transform: scale(1.15);
+  filter: drop-shadow(0 0 12px #fff);
+}
+
+.peca--assentada {
+  font-size: 44px;
+  cursor: default;
+  filter: none;
+  padding: 1px;
+}
+
+/* No erro a peca so balanca e volta: sem cor vermelha, sem alternativa que some. */
+@keyframes tremer-peca {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-9px);
+  }
+  75% {
+    transform: translateX(9px);
+  }
+}
+.peca--tremendo {
+  animation: tremer-peca 0.34s;
+}
+
+@media (max-width: 640px) {
+  .alvo {
+    min-width: 132px;
+    min-height: 146px;
+  }
+}
