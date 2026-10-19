@@ -1,0 +1,113 @@
+.inicio-titulo {
+  font-size: 46px;
+  font-weight: bold;
+  color: #fff;
+  line-height: 1.05;
+  text-align: center;
+  margin: 0;
+  text-shadow: 0 4px 0 rgba(0, 0, 0, 0.18), 0 8px 16px rgba(60, 30, 110, 0.3);
+}
+
+.inicio-subtitulo {
+  font-size: 17px;
+  color: var(--tinta);
+  text-align: center;
+  margin: -8px 0 0;
+}
+
+.inicio-mascotes {
+  display: flex;
+  gap: 20px;
+  font-size: 66px;
+}
+.inicio-mascotes span {
+  display: inline-block;
+  animation: pulinho 1.7s ease-in-out infinite;
+  filter: drop-shadow(0 7px 5px rgba(150, 100, 30, 0.28));
+}
+.inicio-mascotes span:nth-child(2) {
+  animation-delay: 0.22s;
+}
+.inicio-mascotes span:nth-child(3) {
+  animation-delay: 0.44s;
+}
+@keyframes pulinho {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+/* Os niveis ficam na mesma prateleira de madeira das fichas de numero:
+   a crianca ja aprende o gesto que vai usar a partida inteira. */
+.inicio-niveis {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+  background: var(--madeira);
+  border-radius: 26px;
+  padding: 14px 18px 18px;
+  box-shadow: inset 0 -6px 0 rgba(0, 0, 0, 0.16), 0 6px 0 rgba(120, 80, 30, 0.35);
+}
+
+.btn-nivel {
+  font-family: inherit;
+  color: var(--texto);
+  cursor: pointer;
+  border: none;
+  background: var(--creme);
+  min-width: 148px;
+  min-height: 124px;
+  border-radius: 18px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  box-shadow: 0 7px 0 #8e5b2a;
+  transition: transform 0.1s;
+}
+.btn-nivel:active {
+  transform: translateY(6px);
+  box-shadow: 0 1px 0 #8e5b2a;
+}
+
+.nivel-selo {
+  font-size: 34px;
+  line-height: 1;
+}
+.nivel-label {
+  font-size: 21px;
+  font-weight: bold;
+}
+.nivel-estrelas {
+  font-size: 15px;
+  line-height: 1;
+}
+.nivel-desc {
+  font-size: 12px;
+  color: #96887a;
+}
+
+.inicio-nome {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 14px;
+  color: var(--cinza);
+}
+.inicio-nome input {
+  font: inherit;
+  font-size: 17px;
+  padding: 10px 14px;
+  border: 3px solid #e1e2f0;
+  border-radius: 14px;
+  width: min(280px, 80%);
+  text-align: center;
+  background: #fff;
+  margin-left: 8px;
+}
