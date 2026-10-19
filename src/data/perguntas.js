@@ -1,0 +1,512 @@
+// Banco de perguntas do jogo. Cada pergunta carrega a area, o assunto e a
+// habilidade pedagogica pedidas pelo Setor de Educacao, que vao para o registro.
+//
+// modo 'toque'   -> a crianca toca na alternativa certa (opcoes)
+// modo 'arraste' -> a crianca arrasta a peca ate o lugar certo (alvos)
+
+export const perguntas = [
+  // ---------------------------------------------------------- nivel facil
+  {
+    id: "F01", nivel: "facil",
+    area: "Matemática", habilidade: "Contar até 5",
+    texto: "Quantas maçãs você está vendo?",
+    audio: 'audio/F01.mp3',
+    cena: "🍎 🍎 🍎",
+    modo: 'toque', tipo: "numero",
+    opcoes: [
+      { valor: "2", correta: false },
+      { valor: "3", correta: true },
+      { valor: "4", correta: false },
+    ],
+  },
+  {
+    id: "F02", nivel: "facil",
+    area: "Matemática", habilidade: "Contar até 5",
+    texto: "Quantas estrelas você está vendo?",
+    audio: 'audio/F02.mp3',
+    cena: "⭐ ⭐",
+    modo: 'toque', tipo: "numero",
+    opcoes: [
+      { valor: "1", correta: false },
+      { valor: "2", correta: true },
+      { valor: "3", correta: false },
+    ],
+  },
+  {
+    id: "F03", nivel: "facil",
+    area: "Matemática", habilidade: "Contar até 5",
+    texto: "Quantos carrinhos você está vendo?",
+    audio: 'audio/F03.mp3',
+    cena: "🚗 🚗 🚗 🚗",
+    modo: 'toque', tipo: "numero",
+    opcoes: [
+      { valor: "3", correta: false },
+      { valor: "4", correta: true },
+      { valor: "5", correta: false },
+    ],
+  },
+  {
+    id: "F04", nivel: "facil",
+    area: "Matemática", habilidade: "Comparar quantidades",
+    texto: "Toque no prato que tem mais biscoitos.",
+    audio: 'audio/F04.mp3',
+    modo: 'toque', tipo: "imagem",
+    opcoes: [
+      { valor: "🍪🍪🍪🍪🍪", correta: true, rotulo: "cinco biscoitos" },
+      { valor: "🍪🍪", correta: false, rotulo: "dois biscoitos" },
+    ],
+  },
+  {
+    id: "F05", nivel: "facil",
+    area: "Português", habilidade: "Som da letra",
+    texto: "Aaaaa. Que letra faz esse som?",
+    audio: 'audio/F05.mp3',
+    modo: 'toque', tipo: "letra",
+    opcoes: [
+      { valor: "A", correta: true },
+      { valor: "M", correta: false },
+      { valor: "S", correta: false },
+    ],
+  },
+  {
+    id: "F06", nivel: "facil",
+    area: "Português", habilidade: "Som da letra",
+    texto: "Mmmmm. Que letra faz esse som?",
+    audio: 'audio/F06.mp3',
+    modo: 'toque', tipo: "letra",
+    opcoes: [
+      { valor: "O", correta: false },
+      { valor: "M", correta: true },
+      { valor: "T", correta: false },
+    ],
+  },
+  {
+    id: "F07", nivel: "facil",
+    area: "Português", habilidade: "Primeira letra da palavra",
+    texto: "Com que letra começa a palavra BOLA?",
+    audio: 'audio/F07.mp3',
+    cena: "🏐",
+    modo: 'toque', tipo: "letra",
+    opcoes: [
+      { valor: "B", correta: true },
+      { valor: "D", correta: false },
+      { valor: "F", correta: false },
+    ],
+  },
+  {
+    id: "F08", nivel: "facil",
+    area: "Português", habilidade: "Reconhecer a palavra falada",
+    texto: "Toque na figura da palavra GATO.",
+    audio: 'audio/F08.mp3',
+    modo: 'toque', tipo: "imagem",
+    opcoes: [
+      { valor: "🐱", correta: true, rotulo: "gato" },
+      { valor: "🦆", correta: false, rotulo: "pato" },
+      { valor: "🏐", correta: false, rotulo: "bola" },
+    ],
+  },
+  {
+    id: "F09", nivel: "facil",
+    area: "Senso de direção", habilidade: "Em cima",
+    texto: "Coloque o gato em cima da caixa.",
+    audio: 'audio/F09.mp3',
+    modo: 'arraste', peca: "🐱",
+    alvos: [
+      { posicao: "acima", cenario: "📦", correta: true },
+      { posicao: "abaixo", cenario: "📦", correta: false },
+      { posicao: "direita", cenario: "📦", correta: false },
+    ],
+  },
+  {
+    id: "F10", nivel: "facil",
+    area: "Senso de direção", habilidade: "Embaixo",
+    texto: "Coloque a bola embaixo da mesa.",
+    audio: 'audio/F10.mp3',
+    modo: 'arraste', peca: "🏐",
+    alvos: [
+      { posicao: "acima", cenario: "🪑", correta: false },
+      { posicao: "abaixo", cenario: "🪑", correta: true },
+      { posicao: "direita", cenario: "🪑", correta: false },
+    ],
+  },
+  {
+    id: "F11", nivel: "facil",
+    area: "Senso de direção", habilidade: "Dentro",
+    texto: "Coloque o peixinho dentro do aquário.",
+    audio: 'audio/F11.mp3',
+    modo: 'arraste', peca: "🐠",
+    alvos: [
+      { posicao: "dentro", cenario: "🪸", correta: true },
+      { posicao: "fora", cenario: "🪸", correta: false },
+    ],
+  },
+  {
+    id: "F12", nivel: "facil",
+    area: "Senso de direção", habilidade: "Fora",
+    texto: "Coloque o cachorro fora da casinha.",
+    audio: 'audio/F12.mp3',
+    modo: 'arraste', peca: "🐶",
+    alvos: [
+      { posicao: "fora", cenario: "🏠", correta: true },
+      { posicao: "dentro", cenario: "🏠", correta: false },
+    ],
+  },
+  {
+    id: "F13", nivel: "facil",
+    area: "Percepção visual", habilidade: "Cores",
+    texto: "Toque na cor vermelha.",
+    audio: 'audio/F13.mp3',
+    modo: 'toque', tipo: "cor",
+    opcoes: [
+      { valor: "vermelho", correta: true },
+      { valor: "azul", correta: false },
+      { valor: "amarelo", correta: false },
+    ],
+  },
+  {
+    id: "F14", nivel: "facil",
+    area: "Percepção visual", habilidade: "Maior e menor",
+    texto: "Toque no cachorro maior.",
+    audio: 'audio/F14.mp3',
+    modo: 'toque', tipo: "imagem",
+    opcoes: [
+      { valor: "🐕", correta: true, rotulo: "cachorro grande", escala: 1.7 },
+      { valor: "🐕", correta: false, rotulo: "cachorro pequeno", escala: 0.8 },
+    ],
+  },
+  {
+    id: "F15", nivel: "facil",
+    area: "Percepção visual", habilidade: "Cores",
+    texto: "Toque na cor azul.",
+    audio: 'audio/F15.mp3',
+    modo: 'toque', tipo: "cor",
+    opcoes: [
+      { valor: "verde", correta: false },
+      { valor: "azul", correta: true },
+      { valor: "vermelho", correta: false },
+    ],
+  },
+  {
+    id: "F16", nivel: "facil",
+    area: "Percepção visual", habilidade: "Animais e habitats",
+    texto: "Leve o peixe para o lugar onde ele vive.",
+    audio: 'audio/F16.mp3',
+    modo: 'arraste', peca: "🐟",
+    alvos: [
+      { posicao: "acima", cenario: "🌳", correta: false },
+      { posicao: "acima", cenario: "🌊", correta: true },
+      { posicao: "acima", cenario: "🏜️", correta: false },
+    ],
+  },
+  // ---------------------------------------------------------- nivel medio
+  {
+    id: "M01", nivel: "medio",
+    area: "Matemática", habilidade: "Contar até 10",
+    texto: "Quantos peixinhos você está vendo?",
+    audio: 'audio/M01.mp3',
+    cena: "🐠 🐠 🐠 🐠 🐠 🐠 🐠",
+    modo: 'toque', tipo: "numero",
+    opcoes: [
+      { valor: "6", correta: false },
+      { valor: "7", correta: true },
+      { valor: "8", correta: false },
+    ],
+  },
+  {
+    id: "M02", nivel: "medio",
+    area: "Matemática", habilidade: "Comparar quantidades",
+    texto: "Toque no grupo que tem menos maçãs.",
+    audio: 'audio/M02.mp3',
+    modo: 'toque', tipo: "imagem",
+    opcoes: [
+      { valor: "🍎🍎🍎🍎🍎", correta: false, rotulo: "cinco maçãs" },
+      { valor: "🍎🍎", correta: true, rotulo: "duas maçãs" },
+    ],
+  },
+  {
+    id: "M03", nivel: "medio",
+    area: "Matemática", habilidade: "Contar elementos da figura",
+    texto: "Quantas patas tem o gato?",
+    audio: 'audio/M03.mp3',
+    cena: "🐈",
+    modo: 'toque', tipo: "numero",
+    opcoes: [
+      { valor: "2", correta: false },
+      { valor: "4", correta: true },
+      { valor: "6", correta: false },
+    ],
+  },
+  {
+    id: "M04", nivel: "medio",
+    area: "Português", habilidade: "Contar sílabas",
+    texto: "Ouça: BO... LA. Quantos pedacinhos tem essa palavra?",
+    audio: 'audio/M04.mp3',
+    modo: 'toque', tipo: "numero",
+    opcoes: [
+      { valor: "1", correta: false },
+      { valor: "2", correta: true },
+      { valor: "3", correta: false },
+    ],
+  },
+  {
+    id: "M05", nivel: "medio",
+    area: "Português", habilidade: "Distinguir sons parecidos",
+    texto: "Toque na figura da palavra SAPO.",
+    audio: 'audio/M05.mp3',
+    modo: 'toque', tipo: "imagem",
+    opcoes: [
+      { valor: "🐸", correta: true, rotulo: "sapo" },
+      { valor: "🔔", correta: false, rotulo: "sino" },
+      { valor: "🎒", correta: false, rotulo: "saco" },
+    ],
+  },
+  {
+    id: "M06", nivel: "medio",
+    area: "Português", habilidade: "Contar letras da palavra",
+    texto: "Quantas letras tem essa palavra?",
+    audio: 'audio/M06.mp3',
+    cena: "SOL", cenaTexto: true,
+    modo: 'toque', tipo: "numero",
+    opcoes: [
+      { valor: "2", correta: false },
+      { valor: "3", correta: true },
+      { valor: "4", correta: false },
+    ],
+  },
+  {
+    id: "M07", nivel: "medio",
+    area: "Senso de direção", habilidade: "Frente e atrás",
+    texto: "Coloque a menina na frente da fila.",
+    audio: 'audio/M07.mp3',
+    modo: 'arraste', peca: "👧",
+    alvos: [
+      { posicao: "esquerda", cenario: "👦👦👦", correta: true },
+      { posicao: "direita", cenario: "👦👦👦", correta: false },
+    ],
+  },
+  {
+    id: "M08", nivel: "medio",
+    area: "Senso de direção", habilidade: "Entre dois objetos",
+    texto: "Coloque o coelho entre os dois patos.",
+    audio: 'audio/M08.mp3',
+    modo: 'arraste', peca: "🐰",
+    alvos: [
+      { posicao: "esquerda", cenario: "🦆🦆", correta: false },
+      { posicao: "entre", cenario: ["🦆","🦆"], correta: true },
+      { posicao: "direita", cenario: "🦆🦆", correta: false },
+    ],
+  },
+  {
+    id: "M09", nivel: "medio",
+    area: "Senso de direção", habilidade: "Lado direito",
+    texto: "Coloque a criança do lado direito do escorregador.",
+    audio: 'audio/M09.mp3',
+    modo: 'arraste', peca: "🧒",
+    alvos: [
+      { posicao: "esquerda", cenario: "🛝", correta: false },
+      { posicao: "direita", cenario: "🛝", correta: true },
+    ],
+  },
+  {
+    id: "M10", nivel: "medio",
+    area: "Percepção visual", habilidade: "Animais e habitats",
+    texto: "Leve o macaco para o lugar onde ele vive.",
+    audio: 'audio/M10.mp3',
+    modo: 'arraste', peca: "🐒",
+    alvos: [
+      { posicao: "acima", cenario: "🏜️", correta: false },
+      { posicao: "acima", cenario: "❄️", correta: false },
+      { posicao: "acima", cenario: "🌳", correta: true },
+    ],
+  },
+  {
+    id: "M11", nivel: "medio",
+    area: "Percepção visual", habilidade: "Cores menos usuais",
+    texto: "Toque na cor laranja.",
+    audio: 'audio/M11.mp3',
+    modo: 'toque', tipo: "cor",
+    opcoes: [
+      { valor: "rosa", correta: false },
+      { valor: "laranja", correta: true },
+      { valor: "marrom", correta: false },
+    ],
+  },
+  {
+    id: "M12", nivel: "medio",
+    area: "Percepção visual", habilidade: "Som do animal",
+    texto: "Muuuu. Que animal faz esse som?",
+    audio: 'audio/M12.mp3',
+    modo: 'toque', tipo: "imagem",
+    opcoes: [
+      { valor: "🐄", correta: true, rotulo: "vaca" },
+      { valor: "🐓", correta: false, rotulo: "galo" },
+      { valor: "🐈", correta: false, rotulo: "gato" },
+    ],
+  },
+  // ---------------------------------------------------------- nivel dificil
+  {
+    id: "D01", nivel: "dificil",
+    area: "Matemática", habilidade: "Somar até 5",
+    texto: "Havia duas maçãs na cesta e o menino colocou mais uma. Quantas maçãs ficaram?",
+    audio: 'audio/D01.mp3',
+    cena: "🍎 🍎 ➕ 🍎",
+    modo: 'toque', tipo: "numero",
+    opcoes: [
+      { valor: "2", correta: false },
+      { valor: "3", correta: true },
+      { valor: "4", correta: false },
+    ],
+  },
+  {
+    id: "D02", nivel: "dificil",
+    area: "Matemática", habilidade: "Retirar quantidades",
+    texto: "Tinha cinco balões e dois voaram. Quantos balões sobraram?",
+    audio: 'audio/D02.mp3',
+    cena: "🎈 🎈 🎈 🎈 🎈",
+    modo: 'toque', tipo: "numero",
+    opcoes: [
+      { valor: "2", correta: false },
+      { valor: "3", correta: true },
+      { valor: "4", correta: false },
+    ],
+  },
+  {
+    id: "D03", nivel: "dificil",
+    area: "Matemática", habilidade: "Completar um padrão",
+    texto: "Olhe a fileira. Toque na figura que vem depois.",
+    audio: 'audio/D03.mp3',
+    cena: "🔵 🟥 🔵 🟥 ❔",
+    modo: 'toque', tipo: "imagem",
+    opcoes: [
+      { valor: "🔵", correta: true, rotulo: "círculo" },
+      { valor: "🟥", correta: false, rotulo: "quadrado" },
+      { valor: "🔺", correta: false, rotulo: "triângulo" },
+    ],
+  },
+  {
+    id: "D04", nivel: "dificil",
+    area: "Português", habilidade: "Rimas",
+    texto: "PATO. Toque na figura da palavra que rima com PATO.",
+    audio: 'audio/D04.mp3',
+    modo: 'toque', tipo: "imagem",
+    opcoes: [
+      { valor: "🐱", correta: true, rotulo: "gato" },
+      { valor: "🏠", correta: false, rotulo: "casa" },
+      { valor: "☀️", correta: false, rotulo: "sol" },
+    ],
+  },
+  {
+    id: "D05", nivel: "dificil",
+    area: "Português", habilidade: "Mesma sílaba inicial",
+    texto: "FA-CA começa com FA. Toque na figura que também começa com FA.",
+    audio: 'audio/D05.mp3',
+    modo: 'toque', tipo: "imagem",
+    opcoes: [
+      { valor: "🧚", correta: true, rotulo: "fada" },
+      { valor: "👜", correta: false, rotulo: "mala" },
+      { valor: "🐈", correta: false, rotulo: "gato" },
+    ],
+  },
+  {
+    id: "D06", nivel: "dificil",
+    area: "Português", habilidade: "Reconhecer a palavra escrita",
+    texto: "Toque na palavra SOL.",
+    audio: 'audio/D06.mp3',
+    modo: 'toque', tipo: "palavra",
+    opcoes: [
+      { valor: "SOL", correta: true },
+      { valor: "SAL", correta: false },
+      { valor: "SAPO", correta: false },
+    ],
+  },
+  {
+    id: "D07", nivel: "dificil",
+    area: "Senso de direção", habilidade: "Trajetos",
+    texto: "Leve o coelho pelo caminho que chega até a cenoura.",
+    audio: 'audio/D07.mp3',
+    modo: 'arraste', peca: "🐰",
+    alvos: [
+      { posicao: "acima", cenario: "〰️🪨", correta: false },
+      { posicao: "acima", cenario: "〰️🥕", correta: true },
+      { posicao: "acima", cenario: "〰️🌵", correta: false },
+    ],
+  },
+  {
+    id: "D08", nivel: "dificil",
+    area: "Senso de direção", habilidade: "Direção da seta",
+    texto: "Toque na seta que está apontando para cima.",
+    audio: 'audio/D08.mp3',
+    modo: 'toque', tipo: "imagem",
+    opcoes: [
+      { valor: "⬇️", correta: false, rotulo: "para baixo" },
+      { valor: "⬆️", correta: true, rotulo: "para cima" },
+      { valor: "➡️", correta: false, rotulo: "para o lado" },
+    ],
+  },
+  {
+    id: "D09", nivel: "dificil",
+    area: "Senso de direção", habilidade: "Comparar alturas",
+    texto: "O gato vai subir a escada. Coloque o gato no degrau mais alto.",
+    audio: 'audio/D09.mp3',
+    modo: 'arraste', peca: "🐱",
+    alvos: [
+      { posicao: "acima", cenario: "🟫", correta: false },
+      { posicao: "acima", cenario: "🟫", correta: false, elevacao: 26 },
+      { posicao: "acima", cenario: "🟫", correta: true, elevacao: 56 },
+    ],
+  },
+  {
+    id: "D10", nivel: "dificil",
+    area: "Percepção visual", habilidade: "Formas geométricas",
+    texto: "Toque no triângulo.",
+    audio: 'audio/D10.mp3',
+    modo: 'toque', tipo: "imagem",
+    opcoes: [
+      { valor: "🔺", correta: true, rotulo: "triângulo" },
+      { valor: "🟦", correta: false, rotulo: "quadrado" },
+      { valor: "🔵", correta: false, rotulo: "círculo" },
+    ],
+  },
+  {
+    id: "D11", nivel: "dificil",
+    area: "Percepção visual", habilidade: "Figura e sombra",
+    texto: "Leve o elefante até a sombra dele.",
+    audio: 'audio/D11.mp3',
+    modo: 'arraste', peca: "🐘",
+    alvos: [
+      { posicao: "acima", cenario: "🦒", correta: false, sombra: true },
+      { posicao: "acima", cenario: "🐘", correta: true, sombra: true },
+      { posicao: "acima", cenario: "🐒", correta: false, sombra: true },
+    ],
+  },
+  {
+    id: "D12", nivel: "dificil",
+    area: "Percepção visual", habilidade: "Achar o diferente",
+    texto: "Duas figuras são iguaizinhas. Toque na que está diferente.",
+    audio: 'audio/D12.mp3',
+    modo: 'toque', tipo: "imagem",
+    opcoes: [
+      { valor: "🐶", correta: false },
+      { valor: "🐱", correta: true },
+      { valor: "🐶", correta: false },
+    ],
+  },
+]
+
+export const NIVEIS = [
+  { id: 'facil',   label: 'FÁCIL',   estrelas: '⭐',     selo: '🌱', desc: 'para começar bem!' },
+  { id: 'medio',   label: 'MÉDIO',   estrelas: '⭐⭐',   selo: '🌷', desc: 'um pouco mais difícil' },
+  { id: 'dificil', label: 'DIFÍCIL', estrelas: '⭐⭐⭐', selo: '🌸', desc: 'para os experts!' },
+]
+
+export const perguntasDoNivel = (nivel) => perguntas.filter((p) => p.nivel === nivel)
+
+// Falas fixas do jogo. Mesmo esquema: se o arquivo nao existir em
+// public/audio, a voz do navegador fala o texto.
+export const FALAS = {
+  convite: { texto: 'Vamos brincar! Escolha um caminho.', audio: 'audio/convite.mp3' },
+  acerto: { texto: 'Muito bem!', audio: 'audio/muito-bem.mp3' },
+  erro: { texto: 'Quase! Vamos tentar outra vez.', audio: 'audio/tentar-de-novo.mp3' },
+  tocarNoLugar: { texto: 'Agora toque no lugar certo', audio: 'audio/toque-no-lugar.mp3' },
+  final: { texto: 'Você conseguiu! Parabéns!', audio: 'audio/parabens.mp3' },
+}
