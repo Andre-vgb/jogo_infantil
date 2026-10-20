@@ -1,0 +1,57 @@
+.festa {
+  position: absolute;
+  inset: 0;
+  z-index: 9;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: radial-gradient(
+    circle at 50% 48%,
+    rgba(95, 196, 155, 0.88) 0%,
+    rgba(95, 196, 155, 0.6) 26%,
+    rgba(95, 196, 155, 0) 60%
+  );
+  animation: brotar 0.35s ease-out;
+}
+
+@keyframes brotar {
+  from {
+    opacity: 0;
+    transform: scale(0.86);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.festa-ganho {
+  font-size: 76px;
+  font-weight: bold;
+  color: #fff;
+  line-height: 1;
+  text-shadow: 0 5px 0 rgba(40, 110, 85, 0.35);
+}
+
+.festa-estrela {
+  font-size: 62px;
+  color: #ffd84d;
+  line-height: 1;
+  filter: drop-shadow(0 4px 0 #d9a400);
+  animation: girar 0.5s ease-out;
+}
+.festa-estrela:nth-of-type(2) {
+  font-size: 52px;
+  margin-top: 16px;
+}
+
+@keyframes girar {
+  from {
+    transform: rotate(-40deg) scale(0.4);
+  }
+  to {
+    transform: rotate(0) scale(1);
+  }
+}
