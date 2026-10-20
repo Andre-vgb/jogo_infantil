@@ -1,0 +1,56 @@
+.tela-resultado {
+  text-align: center;
+  padding: 34px 16px;
+}
+
+.resultado-balao {
+  font-size: 66px;
+  display: inline-block;
+}
+
+.resultado-titulo {
+  font-size: 33px;
+  margin: 0.15em 0 0.35em;
+}
+
+.resultado-estrelas {
+  font-size: 26px;
+  color: #ff9f1a;
+  letter-spacing: 2px;
+  margin: 0;
+}
+
+.resultado-texto {
+  font-size: 19px;
+}
+
+.resultado-botoes {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+
+.resultado-botoes button {
+  font: inherit;
+  font-size: 19px;
+  padding: 14px 26px;
+  border: none;
+  border-radius: 20px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.btn-salvar {
+  background: #ff8a65;
+  box-shadow: 0 5px 0 #d96a48;
+}
+.btn-voltar {
+  background: #8a7f6a;
+  box-shadow: 0 5px 0 #6e6555;
+}
+.resultado-botoes button:active {
+  transform: translateY(4px);
+  box-shadow: none;
+}
