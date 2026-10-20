@@ -1,0 +1,7 @@
+/* Fica por cima de tudo, inclusive transbordando para fora da moldura branca. */
+.confete {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 80;
+}
