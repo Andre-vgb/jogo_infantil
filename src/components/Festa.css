@@ -47,18 +47,6 @@
   margin-top: 16px;
 }
 
-@media (max-width: 480px) {
-  .festa-ganho {
-    font-size: 58px;
-  }
-  .festa-estrela {
-    font-size: 46px;
-  }
-  .festa-estrela:nth-of-type(2) {
-    font-size: 38px;
-  }
-}
-
 @keyframes girar {
   from {
     transform: rotate(-40deg) scale(0.4);

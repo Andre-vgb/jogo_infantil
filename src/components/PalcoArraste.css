@@ -26,64 +26,19 @@
   box-shadow: 0 6px 0 var(--menta);
 }
 
-/* Dentro e fora da casa: a casa fica sobre uma faixa de grama na base do card. */
-.alvo--casa {
-  min-width: 250px;
-  min-height: 250px;
-  padding: 12px 16px 22px;
-  align-items: flex-end;
-  background: linear-gradient(to top, #8fcb63 0 34px, #79b84f 34px 38px, rgba(255, 255, 255, 0.94) 38px);
-}
-
-.casa {
-  position: relative;
-  display: flex;
-  align-items: flex-end;
-  gap: 10px;
-}
-.casa .arte {
-  display: block;
-}
-.casa--dentro .alvo-cenario {
-  font-size: 200px;
-}
-.casa--fora .alvo-cenario {
-  font-size: 120px;
-}
-
-.vaga-casa {
+.alvo-recinto {
+  border: 6px dashed #63b7d8;
+  border-radius: 16px;
+  background: #e7f5fb;
+  padding: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 6px;
 }
 
-/* A vaga de dentro e a porta da casinha: a posicao acompanha o desenho. */
-.vaga-casa--dentro {
-  position: absolute;
-  left: 28%;
-  top: 47%;
-  width: 24%;
-  height: 38%;
-  border: 4px dashed #2a9d93;
-  border-radius: 50% 50% 6px 6px / 34% 34% 6px 6px;
-  background: rgba(42, 157, 147, 0.22);
-}
-.vaga-casa--dentro .peca--assentada {
-  font-size: 40px;
-}
-
-/* A vaga de fora fica no quintal, separada das paredes. */
-.vaga-casa--fora {
-  width: 92px;
-  height: 92px;
-  margin-bottom: 4px;
-  border: 4px dashed #ee7a5c;
-  border-radius: 18px;
-  background: #ffe8df;
-}
-
-/* Recipiente: so o desenho, sem card, e a peca entra nele. */
-.alvo--recipiente {
+/* Recipiente: so o desenho grande, sem card em volta. */
+.alvo.alvo--recipiente {
   background: none;
   box-shadow: none;
   padding: 0;
@@ -105,9 +60,26 @@
 .peca--no-recipiente {
   position: absolute;
   left: 50%;
-  top: 55%;
+  top: 58%;
   transform: translate(-50%, -50%);
   font-size: 84px;
+}
+
+/* No acerto o peixe nada um pouquinho dentro do aquario. */
+@keyframes nadar {
+  0%,
+  100% {
+    transform: translate(-50%, -50%);
+  }
+  30% {
+    transform: translate(-62%, -54%) rotate(-6deg);
+  }
+  70% {
+    transform: translate(-38%, -46%) rotate(6deg);
+  }
+}
+.alvo--acertou .peca--no-recipiente {
+  animation: nadar 0.9s ease;
 }
 
 .alvo-cenario {
@@ -192,110 +164,7 @@
   .alvo-recipiente .alvo-cenario {
     font-size: 170px;
   }
-  .alvo--casa {
-    min-width: 160px;
-    min-height: 190px;
-  }
-  .casa--dentro .alvo-cenario {
-    font-size: 140px;
-  }
-  .vaga-casa--dentro .peca--assentada {
-    font-size: 28px;
-  }
-  .casa--fora .alvo-cenario {
-    font-size: 76px;
-  }
-  .vaga-casa--fora {
-    width: 64px;
-    height: 64px;
-  }
   .peca--no-recipiente {
     font-size: 62px;
-  }
-}
-
-/* Celular pequeno: os lugares de soltar encolhem e dividem a largura. Os que
-   sao largos demais (como pato, vaga, pato) descem para a linha de baixo. */
-@media (max-width: 480px) {
-  .palco {
-    gap: 10px;
-    width: 100%;
-  }
-  .alvo {
-    flex: 1 1 auto;
-    min-width: 0;
-    min-height: 96px;
-    padding: 8px;
-    gap: 4px;
-    border-radius: 18px;
-  }
-  .alvo-cenario {
-    font-size: 42px;
-  }
-  .alvo-vaga {
-    width: 56px;
-    height: 56px;
-    border-width: 3px;
-    border-radius: 14px;
-  }
-  .peca {
-    font-size: 50px;
-  }
-  .peca--assentada {
-    font-size: 34px;
-  }
-  .alvo--recipiente {
-    flex: 0 1 auto;
-  }
-  .alvo-recipiente .alvo-cenario {
-    font-size: 150px;
-  }
-  .peca--no-recipiente {
-    font-size: 54px;
-  }
-  .alvo--casa {
-    min-height: 160px;
-    padding: 8px 6px 18px;
-    background: linear-gradient(to top, #8fcb63 0 26px, #79b84f 26px 29px, rgba(255, 255, 255, 0.94) 29px);
-  }
-  .casa {
-    gap: 4px;
-  }
-  .casa--dentro .alvo-cenario {
-    font-size: 110px;
-  }
-  .vaga-casa--dentro .peca--assentada {
-    font-size: 22px;
-  }
-  .casa--fora .alvo-cenario {
-    font-size: 60px;
-  }
-  .vaga-casa--fora {
-    width: 50px;
-    height: 50px;
-    border-width: 3px;
-    border-radius: 12px;
-  }
-  .vaga-casa--fora .peca--assentada {
-    font-size: 30px;
-  }
-}
-
-/* Celular deitado: cenarios mais baixos para caber na altura. */
-@media (max-height: 520px) and (orientation: landscape) {
-  .alvo {
-    min-height: 130px;
-  }
-  .alvo-recipiente .alvo-cenario {
-    font-size: 150px;
-  }
-  .alvo--casa {
-    min-height: 170px;
-  }
-  .casa--dentro .alvo-cenario {
-    font-size: 130px;
-  }
-  .casa--fora .alvo-cenario {
-    font-size: 80px;
   }
 }

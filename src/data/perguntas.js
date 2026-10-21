@@ -136,6 +136,7 @@ export const perguntas = [
     audio: 'audio/F11.mp3',
     modo: 'arraste', peca: "🐠",
     alvos: [
+      // So o aquario: a crianca arrasta o peixe para dentro dele.
       { posicao: "recipiente", cenario: "🪸", correta: true },
     ],
   },
@@ -146,8 +147,15 @@ export const perguntas = [
     audio: 'audio/F12.mp3',
     modo: 'arraste', peca: "🐶",
     alvos: [
-      { posicao: "fora", cenario: "🏠", correta: true },
-      { posicao: "dentro", cenario: "🏠", correta: false },
+      // cenario 'casinha' usa o desenho de Casinha.jsx. fala: o que toca ao tocar no card.
+      {
+        posicao: "fora", cenario: "casinha", correta: true,
+        fala: { texto: "Fora da casinha", audio: 'audio/fora-da-casinha.mp3' },
+      },
+      {
+        posicao: "dentro", cenario: "casinha", correta: false,
+        fala: { texto: "Dentro da casinha", audio: 'audio/dentro-da-casinha.mp3' },
+      },
     ],
   },
   {

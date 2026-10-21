@@ -94,55 +94,20 @@
   color: #96887a;
 }
 
-@media (max-width: 640px) {
-  .inicio-titulo {
-    font-size: 36px;
-  }
-  .inicio-mascotes {
-    font-size: 52px;
-    gap: 14px;
-  }
+.inicio-nome {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 14px;
+  color: var(--cinza);
 }
-
-/* Os tres niveis continuam lado a lado no celular, so ficam mais estreitos. */
-@media (max-width: 480px) {
-  .inicio-titulo {
-    font-size: 30px;
-  }
-  .inicio-mascotes {
-    font-size: 44px;
-  }
-  .inicio-niveis {
-    flex-wrap: nowrap;
-    width: 100%;
-    gap: 8px;
-    padding: 10px 10px 14px;
-    border-radius: 20px;
-  }
-  .btn-nivel {
-    flex: 1 1 0;
-    min-width: 0;
-    min-height: 104px;
-    padding: 8px 4px;
-    border-radius: 14px;
-  }
-  .nivel-selo {
-    font-size: 28px;
-  }
-  .nivel-label {
-    font-size: 16px;
-  }
-  .nivel-desc {
-    font-size: 10.5px;
-  }
-}
-
-/* Celular deitado: mascotes menores para o caminho caber na tela. */
-@media (max-height: 520px) and (orientation: landscape) {
-  .inicio-titulo {
-    font-size: 30px;
-  }
-  .inicio-mascotes {
-    font-size: 40px;
-  }
+.inicio-nome input {
+  font: inherit;
+  font-size: 17px;
+  padding: 10px 14px;
+  border: 3px solid #e1e2f0;
+  border-radius: 14px;
+  width: min(280px, 80%);
+  text-align: center;
+  background: #fff;
+  margin-left: 8px;
 }

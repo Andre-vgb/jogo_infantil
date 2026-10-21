@@ -40,27 +40,8 @@
   letter-spacing: 5px;
 }
 .opcao-figura {
-  --figura: 58px;
-  font-size: calc(var(--figura) * var(--escala, 1));
+  font-size: 58px;
   line-height: 1.1;
-}
-
-/* Comparacao de tamanho: cards do mesmo tamanho, figuras maiores e alinhadas
-   pela base. */
-.opcoes-grid--tamanhos .opcao-btn {
-  width: 230px;
-  height: 230px;
-  justify-content: flex-end;
-  padding-bottom: 18px;
-}
-.opcoes-grid--tamanhos .opcao-figura {
-  --figura: 84px;
-  height: calc(var(--figura) * var(--escala-max) * 1.1);
-  display: flex;
-  align-items: flex-end;
-}
-.opcoes-grid--tamanhos .opcao-rotulo {
-  font-size: 15px;
 }
 .opcao-rotulo {
   font-size: 12.5px;
@@ -80,12 +61,15 @@
   height: 250px;
   border-radius: 50%;
   padding: 34px;
-  background: radial-gradient(circle, #fffefa 0 58%, #f1ebdd 59% 61%, #fbf8f0 62% 100%);
+  background: radial-gradient(circle, #fffefa 0 58%, #ece4d2 59% 61%, #fbf8f0 62% 100%);
   border: 3px solid #e6dcc6;
   box-shadow: 0 7px 0 rgba(150, 100, 30, 0.28), inset 0 -5px 10px rgba(150, 120, 70, 0.12);
 }
+.opcao-btn--prato:active {
+  box-shadow: 0 2px 0 rgba(150, 100, 30, 0.28), inset 0 -5px 10px rgba(150, 120, 70, 0.12);
+}
 .opcao-btn--prato .opcao-figura {
-  --figura: 52px;
+  font-size: 52px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -154,100 +138,13 @@
   .opcao-numeral {
     font-size: 40px;
   }
-  .opcoes-grid--tamanhos .opcao-btn {
-    width: 150px;
-    height: 150px;
-  }
-  .opcoes-grid--tamanhos .opcao-figura {
-    --figura: 52px;
-  }
   .opcao-btn--prato {
     width: 170px;
     height: 170px;
     padding: 22px;
   }
   .opcao-btn--prato .opcao-figura {
-    --figura: 34px;
-    max-width: 112px;
-  }
-}
-
-/* Celular pequeno: as opcoes encolhem para ficarem lado a lado. */
-@media (max-width: 480px) {
-  .opcoes-grid {
-    gap: 10px;
-  }
-  .opcao-btn {
-    min-width: 84px;
-    min-height: 84px;
-    padding: 10px;
-    border-radius: 18px;
-  }
-  .opcao-figura {
-    --figura: 44px;
-  }
-  .opcao-letra {
-    font-size: 44px;
-  }
-  .opcao-palavra {
-    font-size: 24px;
-    letter-spacing: 3px;
-  }
-  .opcao-cor {
-    width: 64px;
-    height: 64px;
-  }
-  .opcoes-grid--bandeja {
-    padding: 10px 12px 14px;
-    gap: 10px;
-  }
-  .opcao-btn--ficha {
-    min-width: 64px;
-    min-height: 64px;
-  }
-  .opcao-numeral {
     font-size: 34px;
-  }
-  .opcoes-grid--tamanhos .opcao-btn {
-    width: 126px;
-    height: 126px;
-    padding-bottom: 10px;
-  }
-  .opcoes-grid--tamanhos .opcao-figura {
-    --figura: 40px;
-  }
-  .opcoes-grid--tamanhos .opcao-rotulo {
-    font-size: 12px;
-  }
-  .opcao-btn--prato {
-    width: 130px;
-    height: 130px;
-    padding: 16px;
-  }
-  .opcao-btn--prato .opcao-figura {
-    --figura: 26px;
-    max-width: 86px;
-  }
-  .opcao-btn--prato .opcao-rotulo {
-    font-size: 11px;
-  }
-}
-
-/* Celular deitado: opcoes mais baixas para caber na altura. */
-@media (max-height: 520px) and (orientation: landscape) {
-  .opcao-btn {
-    min-height: 96px;
-  }
-  .opcoes-grid--tamanhos .opcao-btn,
-  .opcao-btn--prato {
-    width: 160px;
-    height: 160px;
-  }
-  .opcoes-grid--tamanhos .opcao-figura {
-    --figura: 52px;
-  }
-  .opcao-btn--prato .opcao-figura {
-    --figura: 32px;
-    max-width: 104px;
+    max-width: 112px;
   }
 }

@@ -2,6 +2,7 @@
 let narracao = null
 
 export function calarVoz() {
+  if ('speechSynthesis' in window) window.speechSynthesis.cancel()
   if (narracao) {
     narracao.pause()
     narracao.currentTime = 0
@@ -23,6 +24,23 @@ export function narrar(arquivo) {
     () => true,
     () => false,
   )
+}
+
+/**
+ * Para falas que ainda podem nao ter gravacao: tenta o .mp3 e, se nao tocar,
+ * a voz do navegador fala o texto em pt-BR.
+ */
+export function narrarOuFalar(arquivo, texto) {
+  return narrar(arquivo).then((tocou) => {
+    if (tocou || !texto || !('speechSynthesis' in window)) return tocou
+    const fala = new SpeechSynthesisUtterance(texto)
+    fala.lang = 'pt-BR'
+    fala.voice = window.speechSynthesis.getVoices().find((voz) => voz.lang.startsWith('pt')) || null
+    fala.rate = 0.85
+    fala.pitch = 1.12
+    window.speechSynthesis.speak(fala)
+    return true
+  })
 }
 
 // Sons curtos gerados na hora, sem arquivo de audio.

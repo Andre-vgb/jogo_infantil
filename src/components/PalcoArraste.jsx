@@ -1,7 +1,8 @@
 import { useMemo, useRef, useState } from 'react'
 import Arte from './Arte'
+import Casinha from './Casinha'
 import { embaralhar } from '../utils/embaralhar'
-import { narrar } from '../utils/audio'
+import { narrar, narrarOuFalar } from '../utils/audio'
 import { FALAS } from '../data/perguntas'
 import './PalcoArraste.css'
 
@@ -82,7 +83,12 @@ export default function PalcoArraste({ pergunta, onResponder, onAvisar }) {
   }
 
   const aoClicarAlvo = (i) => {
-    if (!escolhida) return
+    // Sem a peca marcada, tocar no card so fala o nome do lugar.
+    if (!escolhida) {
+      const fala = alvos[i].fala
+      if (fala) narrarOuFalar(fala.audio, fala.texto)
+      return
+    }
     setEscolhida(false)
     onAvisar(null)
     soltarNo(i)
@@ -128,7 +134,18 @@ export default function PalcoArraste({ pergunta, onResponder, onAvisar }) {
     const estilo = {}
     let conteudo
 
-    switch (alvo.posicao) {
+    switch (alvo.cenario === 'casinha' ? 'casinha' : alvo.posicao) {
+      case 'casinha':
+        conteudo = (
+          <Casinha posicao={alvo.posicao}>
+            {assentadaEm === i && (
+              <span className="peca peca--assentada">
+                <Arte texto={pergunta.peca} />
+              </span>
+            )}
+          </Casinha>
+        )
+        break
       // So o desenho do recipiente: a peca solta aparece dentro dele.
       case 'recipiente':
         conteudo = (
@@ -142,21 +159,15 @@ export default function PalcoArraste({ pergunta, onResponder, onAvisar }) {
           </span>
         )
         break
-      // Dentro e fora usam o desenho da casa sobre uma faixa de grama: dentro,
-      // a vaga e a porta; fora, a vaga fica no quintal ao lado.
       case 'dentro':
+        conteudo = <span className="alvo-recinto">{cenario(alvo.cenario)}{vaga}</span>
+        break
       case 'fora':
         conteudo = (
-          <span className={`casa casa--${alvo.posicao}`}>
-            {cenario(alvo.cenario)}
-            <span className={`vaga-casa vaga-casa--${alvo.posicao}`}>
-              {assentadaEm === i && (
-                <span className="peca peca--assentada">
-                  <Arte texto={pergunta.peca} />
-                </span>
-              )}
-            </span>
-          </span>
+          <>
+            <span className="alvo-recinto">{cenario(alvo.cenario)}</span>
+            {vaga}
+          </>
         )
         break
       case 'entre':
@@ -191,12 +202,14 @@ export default function PalcoArraste({ pergunta, onResponder, onAvisar }) {
         data-alvo={i}
         className={[
           'alvo',
+          alvo.cenario === 'casinha' && 'alvo--casinha',
           alvo.posicao === 'recipiente' && 'alvo--recipiente',
-          (alvo.posicao === 'dentro' || alvo.posicao === 'fora') && 'alvo--casa',
           realcado === i && 'alvo--perto',
+          assentadaEm === i && 'alvo--acertou',
         ]
           .filter(Boolean)
           .join(' ')}
+        aria-label={alvo.fala?.texto}
         style={estilo}
         onClick={() => aoClicarAlvo(i)}
       >
