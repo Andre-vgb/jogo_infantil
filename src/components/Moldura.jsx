@@ -24,20 +24,24 @@ export default function Moldura({
           </button>
         )}
 
-        {estrelas && (
-          <div
-            className="sala-estrelas"
-            aria-label={`${estrelas.acesas} de ${estrelas.total} estrelas`}
-          >
-            {Array.from({ length: estrelas.total }, (_, i) => (
-              <span key={i} className={i < estrelas.acesas ? 'acesa' : ''}>
-                ★
-              </span>
-            ))}
+        {(estrelas || pontos != null) && (
+          <div className="sala-topo">
+            {estrelas && (
+              <div
+                className="sala-estrelas"
+                aria-label={`${estrelas.acesas} de ${estrelas.total} estrelas`}
+              >
+                {Array.from({ length: estrelas.total }, (_, i) => (
+                  <span key={i} className={i < estrelas.acesas ? 'acesa' : ''}>
+                    ★
+                  </span>
+                ))}
+              </div>
+            )}
+
+            {pontos != null && <div className="sala-placar">{pontos}</div>}
           </div>
         )}
-
-        {pontos != null && <div className="sala-placar">{pontos}</div>}
 
         {onOuvir && (
           <button

@@ -1,38 +1,37 @@
 .tela-resultado {
   text-align: center;
-  padding: 34px 16px;
 }
 
 .resultado-balao {
-  font-size: 66px;
+  font-size: 76px;
   display: inline-block;
+  filter: drop-shadow(0 7px 5px rgba(150, 100, 30, 0.28));
 }
 
 .resultado-titulo {
-  font-size: 33px;
-  margin: 0.15em 0 0.35em;
+  font-size: 42px;
+  font-weight: bold;
+  color: #fff;
+  line-height: 1.05;
+  margin: -6px 0 0;
+  text-shadow: 0 4px 0 rgba(0, 0, 0, 0.18), 0 8px 16px rgba(60, 30, 110, 0.3);
 }
 
 .resultado-estrelas {
-  font-size: 26px;
+  font-size: 28px;
   color: #ff9f1a;
   letter-spacing: 2px;
-  margin: 0;
+  margin: -8px 0 0;
+  text-shadow: 0 2px 0 rgba(255, 255, 255, 0.6);
 }
 
 .resultado-texto {
   font-size: 19px;
+  color: var(--tinta);
+  margin: -6px 0 0;
 }
 
-.resultado-botoes {
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: 14px;
-}
-
-.resultado-botoes button {
+.btn-voltar {
   font: inherit;
   font-size: 19px;
   padding: 14px 26px;
@@ -40,17 +39,48 @@
   border-radius: 20px;
   color: #fff;
   cursor: pointer;
-}
-
-.btn-salvar {
-  background: #ff8a65;
-  box-shadow: 0 5px 0 #d96a48;
-}
-.btn-voltar {
   background: #8a7f6a;
   box-shadow: 0 5px 0 #6e6555;
 }
-.resultado-botoes button:active {
+.btn-voltar:active {
   transform: translateY(4px);
   box-shadow: none;
+}
+
+@media (max-width: 640px) {
+  .resultado-balao {
+    font-size: 60px;
+  }
+  .resultado-titulo {
+    font-size: 32px;
+  }
+  .resultado-estrelas {
+    font-size: 22px;
+  }
+  .resultado-texto {
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 480px) {
+  .resultado-titulo {
+    font-size: 28px;
+  }
+  .resultado-estrelas {
+    font-size: 18px;
+    letter-spacing: 1px;
+  }
+  .btn-voltar {
+    font-size: 17px;
+    padding: 12px 22px;
+  }
+}
+
+@media (max-height: 520px) and (orientation: landscape) {
+  .resultado-balao {
+    font-size: 48px;
+  }
+  .resultado-titulo {
+    font-size: 30px;
+  }
 }

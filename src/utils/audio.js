@@ -1,26 +1,7 @@
-// A narracao pode vir de dois lugares:
-// 1. um arquivo .mp3 gravado, em public/audio
-// 2. a voz do proprio navegador, quando o arquivo ainda nao existe
-//
-// Assim da para ir gravando as falas aos poucos, sem travar o jogo.
-export function falar(texto) {
-  if (!texto || !('speechSynthesis' in window)) return
-  window.speechSynthesis.cancel()
-  const fala = new SpeechSynthesisUtterance(texto)
-  fala.lang = 'pt-BR'
-  fala.rate = 0.85
-  fala.pitch = 1.12
-  window.speechSynthesis.speak(fala)
-}
-
-export function calarVoz() {
-  if ('speechSynthesis' in window) window.speechSynthesis.cancel()
-  pararAudio()
-}
-
+// A narracao vem dos arquivos .mp3 gravados, em public/audio.
 let narracao = null
 
-export function pararAudio() {
+export function calarVoz() {
   if (narracao) {
     narracao.pause()
     narracao.currentTime = 0
@@ -29,17 +10,19 @@ export function pararAudio() {
 }
 
 /**
- * Toca a fala. Se o arquivo nao estiver em public/audio, usa a voz do
- * navegador com o mesmo texto.
+ * Toca a fala gravada, interrompendo a que estiver tocando. Resolve false se
+ * o navegador bloquear o som (antes do primeiro toque na pagina, por exemplo).
  */
-export function narrar(texto, arquivo) {
+export function narrar(arquivo) {
   calarVoz()
-  if (!arquivo) return falar(texto)
+  if (!arquivo) return Promise.resolve(false)
 
   const audio = new Audio(`${import.meta.env.BASE_URL}${arquivo}`)
   narracao = audio
-  audio.addEventListener('error', () => falar(texto))
-  audio.play().catch(() => falar(texto))
+  return audio.play().then(
+    () => true,
+    () => false,
+  )
 }
 
 // Sons curtos gerados na hora, sem arquivo de audio.

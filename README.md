@@ -9,18 +9,16 @@
 
 O jogo apresenta 40 atividades divididas em três níveis de dificuldade, trabalhando quatro abordagens ao mesmo tempo: matemática, português e consciência fonológica, senso de direção e percepção visual. Cada partida embaralha as perguntas e as alternativas de posição, incentivando o raciocínio em vez da memorização.
 
-A criança não precisa ler nada: o enunciado é falado pelo jogo e pode ser repetido quantas vezes ela quiser no botão de som. Cada resposta é registrada com a área e a habilidade trabalhada, e ao final a professora pode salvar um arquivo `.txt` com o desempenho.
-
+A criança não precisa ler nada: o enunciado é falado pelo jogo e pode ser repetido quantas vezes ela quiser no botão de som.
 ---
 
 ## Como jogar
 
-1. A professora escreve o nome da criança
-2. Escolha o nível de dificuldade: **Fácil**, **Médio** ou **Difícil**
-3. Ouça a pergunta falada pelo jogo
-4. Responda tocando na alternativa certa, ou arrastando a peça até o lugar certo
-5. A cada acerto aparecem os pontos, as estrelas e os confetes
-6. Ao final, veja a pontuação e salve o registro em `.txt`
+1. Escolha o nível de dificuldade: **Fácil**, **Médio** ou **Difícil**
+2. Ouça a pergunta falada pelo jogo
+3. Responda tocando na alternativa certa, ou arrastando a peça até o lugar certo
+4. A cada acerto aparecem os pontos, as estrelas e os confetes
+5. Ao final, veja a pontuação e as estrelas conquistadas
 
 ---
 
@@ -56,20 +54,7 @@ Nas perguntas de arrastar as duas formas valem: arrastar a peça, ou tocar nela 
 
 ## O erro nunca pune
 
-Sem som grave, sem cor vermelha e sem alternativa que desaparece. A peça apenas balança e volta ao lugar, e a voz convida a tentar de novo. O acerto de primeira vale 10 pontos e duas estrelas; depois de uma tentativa, 5 pontos e uma estrela.
-
----
-
-## Registro de desempenho
-
-Não há banco de dados: um único arquivo `.txt` com id auto incremento, baixado pelo botão ao final da partida.
-
-```
-001|Ana Clara|18/10/2026 14:32:10|facil|F01|Matemática|Contar até 5|ACERTO|1
-002|Ana Clara|18/10/2026 14:32:48|facil|F05|Português|Som da letra|ERRO|2
-```
-
-O último campo é o número de tentativas até acertar. É o que permite à professora ver não só o acerto, mas em quais habilidades a criança hesita.
+Sem som grave, sem cor vermelha e sem alternativa que desaparece. A peça apenas balança e volta ao lugar, e a voz convida a tentar de novo. O acerto de primeira vale 10 pontos e duas estrelas; na segunda tentativa, 5 pontos e uma estrela. Se errar de novo, o jogo segue para a próxima pergunta sem somar pontos.
 
 ---
 
@@ -115,7 +100,7 @@ src/
   components/          uma tela ou peça da interface por arquivo, com o seu CSS
   data/perguntas.js    as 40 perguntas e os três níveis
   data/artes.js        de qual desenho cada emoji do banco vem
-  utils/               voz, sons, sorteio e o registro em .txt
+  utils/               voz, sons e sorteio
   assets/img/          os 51 desenhos em PNG
 ```
 
@@ -148,7 +133,7 @@ Basta copiar o formato de uma parecida em `src/data/perguntas.js`. Nenhum compon
 },
 ```
 
-O `tipo` das perguntas de toque pode ser `numero`, `letra`, `cor`, `palavra` ou `imagem`. A `posicao` dos alvos pode ser `acima`, `abaixo`, `dentro`, `fora`, `esquerda`, `direita` ou `entre`. Os emojis viram desenho pelo mapa em `src/data/artes.js`; se o arquivo não existir, o jogo mostra o emoji no lugar.
+O `tipo` das perguntas de toque pode ser `numero`, `letra`, `cor`, `palavra` ou `imagem`. Com `cartao: 'prato'`, as opções aparecem em pratos redondos em vez de cards. A `posicao` dos alvos pode ser `acima`, `abaixo`, `dentro`, `fora`, `esquerda`, `direita`, `entre` ou `recipiente` (só o desenho, com a peça entrando nele). Os emojis viram desenho pelo mapa em `src/data/artes.js`; se o arquivo não existir, o jogo mostra o emoji no lugar.
 
 ---
 

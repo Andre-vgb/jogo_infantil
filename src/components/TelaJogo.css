@@ -40,4 +40,25 @@
   .jogo-cena {
     font-size: 62px;
   }
+  .jogo-cena--texto {
+    font-size: 46px;
+    letter-spacing: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .jogo-cena {
+    font-size: 48px;
+    word-spacing: 6px;
+  }
+  .jogo-cena--texto {
+    font-size: 36px;
+    letter-spacing: 4px;
+  }
+}
+
+@media (max-height: 520px) and (orientation: landscape) {
+  .jogo-cena {
+    font-size: 50px;
+  }
 }

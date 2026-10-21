@@ -1,13 +1,54 @@
+import { useEffect } from 'react'
 import Moldura from './Moldura'
 import Arte from './Arte'
 import { NIVEIS, FALAS, perguntasDoNivel } from '../data/perguntas'
 import { narrar } from '../utils/audio'
 import './TelaInicio.css'
 
-export default function TelaInicio({ nome, onMudarNome, onIniciar }) {
+// Tempo sem ninguem mexer na tela ate o convite tocar de novo.
+const ESPERA_CONVITE = 20000
+
+export default function TelaInicio({ onIniciar }) {
+  // Toca o convite ao abrir e repete a cada 20 segundos parado. Se o navegador
+  // bloquear o som ate o primeiro toque, o convite toca nesse toque.
+  useEffect(() => {
+    let relogio = null
+    let bloqueado = false
+
+    const convidar = () => {
+      narrar(FALAS.convite.audio).then((tocou) => {
+        bloqueado = !tocou
+      })
+      agendar()
+    }
+
+    const agendar = () => {
+      clearTimeout(relogio)
+      relogio = setTimeout(convidar, ESPERA_CONVITE)
+    }
+
+    const aoMexer = (evento) => {
+      // Tocar num nivel ja comeca o jogo: ai o convite nao precisa tocar.
+      if (bloqueado && !evento.target.closest?.('.btn-nivel')) {
+        bloqueado = false
+        narrar(FALAS.convite.audio)
+      }
+      agendar()
+    }
+
+    convidar()
+    window.addEventListener('pointerdown', aoMexer)
+    window.addEventListener('keydown', aoMexer)
+    return () => {
+      clearTimeout(relogio)
+      window.removeEventListener('pointerdown', aoMexer)
+      window.removeEventListener('keydown', aoMexer)
+    }
+  }, [])
+
   return (
     <main className="tela-inicio">
-      <Moldura tema="tema-palco" onOuvir={() => narrar(FALAS.convite.texto, FALAS.convite.audio)}>
+      <Moldura tema="tema-palco" onOuvir={() => narrar(FALAS.convite.audio)}>
         <h1 className="inicio-titulo">Vamos brincar!</h1>
 
         <div className="inicio-mascotes" aria-hidden="true">
@@ -34,18 +75,6 @@ export default function TelaInicio({ nome, onMudarNome, onIniciar }) {
           ))}
         </section>
       </Moldura>
-
-      {/* Unico momento de teclado do jogo, e quem usa e a professora. */}
-      <p className="inicio-nome">
-        <label htmlFor="nome">Professor:</label>
-        <input
-          id="nome"
-          value={nome}
-          onChange={(e) => onMudarNome(e.target.value)}
-          placeholder="nome da criança"
-          autoComplete="off"
-        />
-      </p>
     </main>
   )
 }

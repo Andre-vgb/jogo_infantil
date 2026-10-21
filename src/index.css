@@ -26,6 +26,18 @@ body {
   overflow-x: hidden;
 }
 
+@media (max-width: 480px) {
+  body {
+    padding: 10px 8px;
+  }
+}
+
+@media (max-height: 520px) and (orientation: landscape) {
+  body {
+    padding: 8px 12px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   * {
     animation: none !important;

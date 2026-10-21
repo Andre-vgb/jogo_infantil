@@ -2,7 +2,6 @@ import { useCallback, useReducer, useRef } from 'react'
 import { perguntasDoNivel, FALAS } from './data/perguntas'
 import { embaralhar } from './utils/embaralhar'
 import { narrar, calarVoz, somAcerto, somNovaTentativa } from './utils/audio'
-import { montarLinha, baixarRegistro } from './utils/registro'
 import TelaInicio from './components/TelaInicio'
 import TelaJogo from './components/TelaJogo'
 import TelaResultado from './components/TelaResultado'
@@ -13,10 +12,11 @@ const PONTOS_DE_PRIMEIRA = 10
 const PONTOS_COM_TENTATIVA = 5
 const ESPERA_FESTA = 1500
 const ESPERA_PROXIMA = 2000
+// Depois de errar esta quantidade de vezes, segue para a proxima sem pontos.
+const MAXIMO_DE_TENTATIVAS = 2
 
 const estadoInicial = {
   tela: 'inicio',
-  nome: '',
   nivel: null,
   perguntasJogo: [],
   indicePergunta: 0,
@@ -25,18 +25,13 @@ const estadoInicial = {
   tentativas: 1,
   festa: null,
   aviso: null,
-  registro: [],
 }
 
 function jogoReducer(estado, acao) {
   switch (acao.type) {
-    case 'DEFINIR_NOME':
-      return { ...estado, nome: acao.nome }
-
     case 'INICIAR_JOGO':
       return {
         ...estadoInicial,
-        nome: estado.nome,
         tela: 'jogo',
         nivel: acao.nivel,
         // Embaralha a ordem das perguntas a cada partida.
@@ -44,27 +39,18 @@ function jogoReducer(estado, acao) {
       }
 
     case 'ERRAR': {
-      const pergunta = estado.perguntasJogo[estado.indicePergunta]
+      const acabou = estado.tentativas >= MAXIMO_DE_TENTATIVAS
       return {
         ...estado,
         tentativas: estado.tentativas + 1,
-        aviso: { tipo: 'gentil', texto: 'Quase! Vamos tentar outra vez.' },
-        registro: [
-          ...estado.registro,
-          montarLinha({
-            sequencial: estado.registro.length + 1,
-            nome: estado.nome.trim() || 'Criança',
-            nivel: estado.nivel,
-            pergunta,
-            resultado: 'ERRO',
-            tentativas: estado.tentativas,
-          }),
-        ],
+        aviso: {
+          tipo: 'gentil',
+          texto: acabou ? 'Vamos para a próxima!' : 'Quase! Vamos tentar outra vez.',
+        },
       }
     }
 
     case 'ACERTAR': {
-      const pergunta = estado.perguntasJogo[estado.indicePergunta]
       const dePrimeira = estado.tentativas === 1
       const ganho = dePrimeira ? PONTOS_DE_PRIMEIRA : PONTOS_COM_TENTATIVA
       return {
@@ -73,17 +59,6 @@ function jogoReducer(estado, acao) {
         pontos: estado.pontos + ganho,
         aviso: { tipo: 'bom', texto: 'Muito bem!' },
         festa: { ganho, estrelas: dePrimeira ? 2 : 1 },
-        registro: [
-          ...estado.registro,
-          montarLinha({
-            sequencial: estado.registro.length + 1,
-            nome: estado.nome.trim() || 'Criança',
-            nivel: estado.nivel,
-            pergunta,
-            resultado: 'ACERTO',
-            tentativas: estado.tentativas,
-          }),
-        ],
       }
     }
 
@@ -105,7 +80,7 @@ function jogoReducer(estado, acao) {
     }
 
     case 'REINICIAR':
-      return { ...estadoInicial, nome: estado.nome }
+      return estadoInicial
 
     default:
       return estado
@@ -137,16 +112,27 @@ export default function App() {
     if (travado.current) return
 
     if (!correta) {
+      const acabou = estado.tentativas >= MAXIMO_DE_TENTATIVAS
       dispatch({ type: 'ERRAR' })
       somNovaTentativa()
-      narrar(FALAS.erro.texto, FALAS.erro.audio)
+      if (!acabou) {
+        narrar(FALAS.erro.audio)
+        return
+      }
+
+      // Errou de novo: segue para a proxima pergunta sem somar pontos.
+      travado.current = true
+      agendar(() => {
+        travado.current = false
+        dispatch({ type: 'PROXIMA_PERGUNTA' })
+      }, ESPERA_PROXIMA)
       return
     }
 
     travado.current = true
     dispatch({ type: 'ACERTAR' })
     somAcerto()
-    narrar(FALAS.acerto.texto, FALAS.acerto.audio)
+    narrar(FALAS.acerto.audio)
     comemorar()
 
     agendar(() => dispatch({ type: 'LIMPAR_FESTA' }), ESPERA_FESTA)
@@ -166,11 +152,7 @@ export default function App() {
   return (
     <div className="app">
       {estado.tela === 'inicio' && (
-        <TelaInicio
-          nome={estado.nome}
-          onMudarNome={(nome) => dispatch({ type: 'DEFINIR_NOME', nome })}
-          onIniciar={iniciarJogo}
-        />
+        <TelaInicio onIniciar={iniciarJogo} />
       )}
 
       {estado.tela === 'jogo' && (
@@ -184,11 +166,9 @@ export default function App() {
 
       {estado.tela === 'resultado' && (
         <TelaResultado
-          nome={estado.nome}
           acertos={estado.acertos}
           total={estado.perguntasJogo.length}
           pontos={estado.pontos}
-          onBaixarRegistro={() => baixarRegistro(estado.registro, estado.nome)}
           onReiniciar={reiniciar}
           onComemorar={comemorar}
         />

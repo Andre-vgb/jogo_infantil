@@ -21,7 +21,7 @@ function ConteudoDaOpcao({ tipo, opcao }) {
   if (tipo === 'cor') return <span className="opcao-cor" style={{ background: CORES[opcao.valor] }} />
   return (
     <>
-      <span className="opcao-figura" style={{ fontSize: 58 * (opcao.escala || 1) }}>
+      <span className="opcao-figura" style={{ '--escala': opcao.escala || 1 }}>
         <Arte texto={opcao.valor} />
       </span>
       {opcao.rotulo && <span className="opcao-rotulo">{opcao.rotulo}</span>}
@@ -46,9 +46,23 @@ export default function OpcoesToque({ pergunta, onResponder }) {
   // As de numero ficam em fichas sobre uma prateleira de madeira.
   const naBandeja = pergunta.tipo === 'numero'
 
+  // Quando a pergunta compara tamanhos, todos os cards ficam iguais e so a
+  // figura muda, apoiada no mesmo chao.
+  const escalas = pergunta.opcoes.map((opcao) => opcao.escala || 1)
+  const comparaTamanho = escalas.some((escala) => escala !== 1)
+  // Opcoes que sao comida aparecem num prato redondo em vez do card.
+  const noPrato = pergunta.cartao === 'prato'
+
   return (
     <section
-      className={`opcoes-grid${naBandeja ? ' opcoes-grid--bandeja' : ''}`}
+      className={[
+        'opcoes-grid',
+        naBandeja && 'opcoes-grid--bandeja',
+        comparaTamanho && 'opcoes-grid--tamanhos',
+      ]
+        .filter(Boolean)
+        .join(' ')}
+      style={comparaTamanho ? { '--escala-max': Math.max(...escalas) } : undefined}
       aria-label="Opções de resposta"
     >
       {opcoes.map((opcao, i) => (
@@ -58,6 +72,7 @@ export default function OpcoesToque({ pergunta, onResponder }) {
           className={[
             'opcao-btn',
             naBandeja && 'opcao-btn--ficha',
+            noPrato && 'opcao-btn--prato',
             tremendo === i && 'opcao-btn--tremendo',
           ]
             .filter(Boolean)

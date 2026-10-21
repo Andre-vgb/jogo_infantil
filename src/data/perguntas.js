@@ -1,5 +1,5 @@
 // Banco de perguntas do jogo. Cada pergunta carrega a area, o assunto e a
-// habilidade pedagogica pedidas pelo Setor de Educacao, que vao para o registro.
+// habilidade pedagogica pedidas pelo Setor de Educacao.
 //
 // modo 'toque'   -> a crianca toca na alternativa certa (opcoes)
 // modo 'arraste' -> a crianca arrasta a peca ate o lugar certo (alvos)
@@ -50,7 +50,7 @@ export const perguntas = [
     area: "Matemática", habilidade: "Comparar quantidades",
     texto: "Toque no prato que tem mais biscoitos.",
     audio: 'audio/F04.mp3',
-    modo: 'toque', tipo: "imagem",
+    modo: 'toque', tipo: "imagem", cartao: 'prato',
     opcoes: [
       { valor: "🍪🍪🍪🍪🍪", correta: true, rotulo: "cinco biscoitos" },
       { valor: "🍪🍪", correta: false, rotulo: "dois biscoitos" },
@@ -136,8 +136,7 @@ export const perguntas = [
     audio: 'audio/F11.mp3',
     modo: 'arraste', peca: "🐠",
     alvos: [
-      { posicao: "dentro", cenario: "🪸", correta: true },
-      { posicao: "fora", cenario: "🪸", correta: false },
+      { posicao: "recipiente", cenario: "🪸", correta: true },
     ],
   },
   {
@@ -501,8 +500,7 @@ export const NIVEIS = [
 
 export const perguntasDoNivel = (nivel) => perguntas.filter((p) => p.nivel === nivel)
 
-// Falas fixas do jogo. Mesmo esquema: se o arquivo nao existir em
-// public/audio, a voz do navegador fala o texto.
+// Falas fixas do jogo, gravadas em public/audio.
 export const FALAS = {
   convite: { texto: 'Vamos brincar! Escolha um caminho.', audio: 'audio/convite.mp3' },
   acerto: { texto: 'Muito bem!', audio: 'audio/muito-bem.mp3' },

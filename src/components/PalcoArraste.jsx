@@ -70,7 +70,7 @@ export default function PalcoArraste({ pergunta, onResponder, onAvisar }) {
     if (!info.moveu) {
       setEscolhida((marcada) => {
         const agora = !marcada
-        if (agora) narrar(FALAS.tocarNoLugar.texto, FALAS.tocarNoLugar.audio)
+        if (agora) narrar(FALAS.tocarNoLugar.audio)
         onAvisar(agora ? { tipo: 'gentil', texto: FALAS.tocarNoLugar.texto } : null)
         return agora
       })
@@ -129,15 +129,34 @@ export default function PalcoArraste({ pergunta, onResponder, onAvisar }) {
     let conteudo
 
     switch (alvo.posicao) {
-      case 'dentro':
-        conteudo = <span className="alvo-recinto">{cenario(alvo.cenario)}{vaga}</span>
+      // So o desenho do recipiente: a peca solta aparece dentro dele.
+      case 'recipiente':
+        conteudo = (
+          <span className="alvo-recipiente">
+            {cenario(alvo.cenario)}
+            {assentadaEm === i && (
+              <span className="peca peca--assentada peca--no-recipiente">
+                <Arte texto={pergunta.peca} />
+              </span>
+            )}
+          </span>
+        )
         break
+      // Dentro e fora usam o desenho da casa sobre uma faixa de grama: dentro,
+      // a vaga e a porta; fora, a vaga fica no quintal ao lado.
+      case 'dentro':
       case 'fora':
         conteudo = (
-          <>
-            <span className="alvo-recinto">{cenario(alvo.cenario)}</span>
-            {vaga}
-          </>
+          <span className={`casa casa--${alvo.posicao}`}>
+            {cenario(alvo.cenario)}
+            <span className={`vaga-casa vaga-casa--${alvo.posicao}`}>
+              {assentadaEm === i && (
+                <span className="peca peca--assentada">
+                  <Arte texto={pergunta.peca} />
+                </span>
+              )}
+            </span>
+          </span>
         )
         break
       case 'entre':
@@ -170,7 +189,14 @@ export default function PalcoArraste({ pergunta, onResponder, onAvisar }) {
       <div
         key={i}
         data-alvo={i}
-        className={`alvo${realcado === i ? ' alvo--perto' : ''}`}
+        className={[
+          'alvo',
+          alvo.posicao === 'recipiente' && 'alvo--recipiente',
+          (alvo.posicao === 'dentro' || alvo.posicao === 'fora') && 'alvo--casa',
+          realcado === i && 'alvo--perto',
+        ]
+          .filter(Boolean)
+          .join(' ')}
         style={estilo}
         onClick={() => aoClicarAlvo(i)}
       >

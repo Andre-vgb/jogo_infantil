@@ -22,7 +22,7 @@ export default function TelaJogo({ estado, onResponder, onAvisar, onSair }) {
 
   // Fala o enunciado sempre que a pergunta muda.
   useEffect(() => {
-    const timer = setTimeout(() => narrar(pergunta.texto, pergunta.audio), 400)
+    const timer = setTimeout(() => narrar(pergunta.audio), 400)
     return () => clearTimeout(timer)
   }, [pergunta])
 
@@ -31,7 +31,7 @@ export default function TelaJogo({ estado, onResponder, onAvisar, onSair }) {
       <Moldura
         tema={TEMA_DA_AREA[pergunta.area] || 'tema-madeira'}
         onFechar={onSair}
-        onOuvir={() => narrar(pergunta.texto, pergunta.audio)}
+        onOuvir={() => narrar(pergunta.audio)}
         estrelas={{ total, acesas: acertos }}
         pontos={pontos}
         contador={`${indicePergunta + 1} de ${total}`}
