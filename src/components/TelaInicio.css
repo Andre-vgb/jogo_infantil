@@ -93,21 +93,3 @@
   font-size: 12px;
   color: #96887a;
 }
-
-.inicio-nome {
-  text-align: center;
-  margin-top: 16px;
-  font-size: 14px;
-  color: var(--cinza);
-}
-.inicio-nome input {
-  font: inherit;
-  font-size: 17px;
-  padding: 10px 14px;
-  border: 3px solid #e1e2f0;
-  border-radius: 14px;
-  width: min(280px, 80%);
-  text-align: center;
-  background: #fff;
-  margin-left: 8px;
-}

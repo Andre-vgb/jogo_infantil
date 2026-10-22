@@ -147,15 +147,9 @@ export const perguntas = [
     audio: 'audio/F12.mp3',
     modo: 'arraste', peca: "🐶",
     alvos: [
-      // cenario 'casinha' usa o desenho de Casinha.jsx. fala: o que toca ao tocar no card.
-      {
-        posicao: "fora", cenario: "casinha", correta: true,
-        fala: { texto: "Fora da casinha", audio: 'audio/fora-da-casinha.mp3' },
-      },
-      {
-        posicao: "dentro", cenario: "casinha", correta: false,
-        fala: { texto: "Dentro da casinha", audio: 'audio/dentro-da-casinha.mp3' },
-      },
+      // cenario 'casinha' usa o desenho de Casinha.jsx.
+      { posicao: "fora", cenario: "casinha", correta: true },
+      { posicao: "dentro", cenario: "casinha", correta: false },
     ],
   },
   {

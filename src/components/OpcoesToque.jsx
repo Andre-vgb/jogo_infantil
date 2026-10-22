@@ -21,7 +21,7 @@ function ConteudoDaOpcao({ tipo, opcao }) {
   if (tipo === 'cor') return <span className="opcao-cor" style={{ background: CORES[opcao.valor] }} />
   return (
     <>
-      <span className="opcao-figura" style={opcao.escala ? { fontSize: 58 * opcao.escala } : undefined}>
+      <span className="opcao-figura" style={opcao.escala ? { '--escala': opcao.escala } : undefined}>
         <Arte texto={opcao.valor} />
       </span>
       {opcao.rotulo && <span className="opcao-rotulo">{opcao.rotulo}</span>}
@@ -47,6 +47,8 @@ export default function OpcoesToque({ pergunta, onResponder }) {
   const naBandeja = pergunta.tipo === 'numero'
   // Opcoes que sao comida aparecem num prato redondo em vez do card.
   const noPrato = pergunta.cartao === 'prato'
+  // Quando so o tamanho do desenho muda, os cards ficam todos iguais.
+  const comEscala = pergunta.opcoes.some((opcao) => opcao.escala)
 
   return (
     <section
@@ -61,6 +63,7 @@ export default function OpcoesToque({ pergunta, onResponder }) {
             'opcao-btn',
             naBandeja && 'opcao-btn--ficha',
             noPrato && 'opcao-btn--prato',
+            comEscala && 'opcao-btn--escala',
             tremendo === i && 'opcao-btn--tremendo',
           ]
             .filter(Boolean)

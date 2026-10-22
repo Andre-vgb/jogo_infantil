@@ -5,5 +5,5 @@ import react from '@vitejs/plugin-react'
 // senao o GitHub Pages nao acha os arquivos do build.
 export default defineConfig({
   plugins: [react()],
-  base: '/Jogo_Infantil/',
+  base: '/jogo_infantil/',
 })

@@ -54,6 +54,18 @@
   box-shadow: inset 0 -6px 0 rgba(0, 0, 0, 0.12);
 }
 
+/* Cards do mesmo tamanho: so o desenho cresce ou diminui, conforme --escala. */
+.opcao-btn--escala {
+  width: 230px;
+  height: 250px;
+}
+.opcao-btn--escala .opcao-figura {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  font-size: calc(58px * var(--escala, 1));
+}
+
 /* Prato de comida: redondo, com aba e fundo, todos do mesmo tamanho para a
    crianca comparar so a quantidade. */
 .opcao-btn--prato {
@@ -137,6 +149,13 @@
   }
   .opcao-numeral {
     font-size: 40px;
+  }
+  .opcao-btn--escala {
+    width: 150px;
+    height: 170px;
+  }
+  .opcao-btn--escala .opcao-figura {
+    font-size: calc(38px * var(--escala, 1));
   }
   .opcao-btn--prato {
     width: 170px;

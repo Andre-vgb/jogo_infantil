@@ -2,7 +2,7 @@ import { useMemo, useRef, useState } from 'react'
 import Arte from './Arte'
 import Casinha from './Casinha'
 import { embaralhar } from '../utils/embaralhar'
-import { narrar, narrarOuFalar } from '../utils/audio'
+import { narrar } from '../utils/audio'
 import { FALAS } from '../data/perguntas'
 import './PalcoArraste.css'
 
@@ -83,12 +83,8 @@ export default function PalcoArraste({ pergunta, onResponder, onAvisar }) {
   }
 
   const aoClicarAlvo = (i) => {
-    // Sem a peca marcada, tocar no card so fala o nome do lugar.
-    if (!escolhida) {
-      const fala = alvos[i].fala
-      if (fala) narrarOuFalar(fala.audio, fala.texto)
-      return
-    }
+    // Sem a peca marcada, tocar no card nao faz nada.
+    if (!escolhida) return
     setEscolhida(false)
     onAvisar(null)
     soltarNo(i)
@@ -209,7 +205,6 @@ export default function PalcoArraste({ pergunta, onResponder, onAvisar }) {
         ]
           .filter(Boolean)
           .join(' ')}
-        aria-label={alvo.fala?.texto}
         style={estilo}
         onClick={() => aoClicarAlvo(i)}
       >

@@ -30,7 +30,7 @@
   transform-origin: 50% 92%;
 }
 
-/* Posicoes em % do card (proporcao 200 x 180), medidas sobre casinha.png. */
+/* Posicoes em % do card (proporcao 200 x 180), medidas sobre casinha.webp. */
 .casinha-imagem {
   position: absolute;
   aspect-ratio: 1;
