@@ -3,9 +3,9 @@
 
 // O Vite resolve os caminhos no build, entao as imagens funcionam tambem
 // quando o jogo esta publicado numa subpasta, como no GitHub Pages.
-const arquivos = import.meta.glob('../assets/img/*.png', { eager: true, query: '?url', import: 'default' })
+const arquivos = import.meta.glob('../assets/img/*.webp', { eager: true, query: '?url', import: 'default' })
 
-const caminhoDe = (nome) => arquivos[`../assets/img/${nome}.png`]
+const caminhoDe = (nome) => arquivos[`../assets/img/${nome}.webp`]
 
 export const ARTES = {
   "🐱": "gato",

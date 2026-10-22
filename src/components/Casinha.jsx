@@ -1,4 +1,4 @@
-import casinha from '../assets/img/casinha.png'
+import casinha from '../assets/img/casinha.webp'
 import './Casinha.css'
 
 // Faixa de grama na base do card: os dois cards ficam no mesmo quintal.

@@ -1,6 +1,7 @@
-import { useCallback, useReducer, useRef } from 'react'
+import { useCallback, useEffect, useReducer, useRef } from 'react'
 import { perguntasDoNivel, FALAS } from './data/perguntas'
 import { embaralhar } from './utils/embaralhar'
+import { preCarregar } from './utils/preCarregar'
 import { narrar, calarVoz, somAcerto, somNovaTentativa } from './utils/audio'
 import TelaInicio from './components/TelaInicio'
 import TelaJogo from './components/TelaJogo'
@@ -93,6 +94,15 @@ export default function App() {
   const comemorar = useCallback(() => confeteRef.current?.soltar(), [])
   const relogios = useRef([])
   const travado = useRef(false)
+
+  // As falas de acerto e erro tocam em toda partida: ja deixa baixadas.
+  useEffect(() => preCarregar(FALAS), [])
+
+  // Enquanto a crianca responde, a proxima pergunta vai sendo baixada.
+  const { perguntasJogo, indicePergunta } = estado
+  useEffect(() => {
+    preCarregar(perguntasJogo[indicePergunta + 1])
+  }, [perguntasJogo, indicePergunta])
 
   const limparRelogios = () => {
     relogios.current.forEach(clearTimeout)
